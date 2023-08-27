@@ -81,6 +81,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -119,6 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/orders/static/'
-MEDIA_URL = '/orders/img/food'
+MEDIA_URL = '/orders/img/food/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'orders/food')
 
