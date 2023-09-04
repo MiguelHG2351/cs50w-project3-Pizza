@@ -53,7 +53,6 @@ class Size_Food(models.Model):
 
 class Toppings(models.Model):
     name_toppings = models.CharField(max_length=255)
-    image_toppings = models.ImageField(upload_to='orders/img/toppings/', default='')
     price_toppings = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
@@ -86,5 +85,7 @@ class Order_Details(models.Model):
 
     def __str__(self):
         return f"Order Details - Food: {self.food}, Quantity: {self.quantity}"
+
+
 
 
