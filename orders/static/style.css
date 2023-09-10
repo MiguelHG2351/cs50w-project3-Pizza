@@ -11,7 +11,11 @@ header a {
     text-decoration: none;
     color: white;
 }
-
+.cat{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
 body {
     margin: 0;
     padding: 0;
@@ -109,7 +113,6 @@ main {
 .list-group-item {
     display: flex;
     justify-content: space-between;
-    /* Coloca el contenido a izquierda y derecha */
     align-items: center;
     /* Centra verticalmente el contenido */
     padding: 15px;
@@ -118,22 +121,16 @@ main {
 /* Estilo para el checkbox */
 .form-check-input {
     margin-right: 10px;
-    /* Espacio entre el checkbox y el contenido */
 }
 
-/* Estilo para la etiqueta del producto */
 .form-check-label {
     flex-grow: 1;
-    /* Permite que el contenido del producto ocupe todo el espacio disponible */
 }
 
-/* Estilo para la imagen (ajusta el tamaño según tus necesidades) */
 .product-image {
     max-width: 100px;
-    /* Ajusta el ancho de la imagen según sea necesario */
-    height: auto;
+    height: 100p;
     margin-right: 10px;
-    /* Espacio entre la imagen y el contenido del producto */
 }
 
 #cart:hover {
@@ -322,7 +319,7 @@ button:hover .star-6 {
 .button::before {
     position: absolute;
     content: none;
-   content: attr(data-tooltip);
+    content: attr(data-tooltip);
     width: var(--tooltip-width);
     height: var(--tooltip-height);
     background-color: #555;
