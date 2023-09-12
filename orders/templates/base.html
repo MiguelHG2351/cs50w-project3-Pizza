@@ -22,10 +22,10 @@
                     <!-- Enlace que muestra el summary -->
                     <li class="user-dropdown">
                         <a href="#" data-bs-toggle="dropdown" class="dropdown-toggle">
-                            <i class="bi bi-person-fill"></i> Username
+                            <i class="bi bi-person-fill"></i> {{user.first_name}}
                         </a>
                         <ul class="dropdown-menu" style='background-color: black;'>
-                            <li><a href="#">Cerrar Sesión</a></li>
+                            <li><a href="{%url 'logout'%}">Cerrar Sesión</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Menu</a></li>

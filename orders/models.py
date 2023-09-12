@@ -62,10 +62,13 @@ class Toppings(models.Model):
     def __str__(self):
         return self.name_toppings
 
-
 class Food_Toppings(models.Model):
-    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    # otros campos de modelo
     toppings = models.ForeignKey(Toppings, on_delete=models.CASCADE)
+    category_food = models.ForeignKey(Category_Food, on_delete=models.CASCADE, default=1)
+    
+    def __str__(self):
+        return self.category_food
 
 
 class Orders(models.Model):

@@ -1,16 +1,21 @@
 {%extends "base.html"%}
 {%load static%}
 {%block main%}
+{% if message %}
+<div class="alert alert-dark" role="alert">
+    {{message}}
+</div>
+{% endif %}
 <div class="container-form">
-    <form class="form">
+    <form action= "{%url 'login'%}" class="form" method='post'>
         <p class="title">Log in </p>
         <p class="message">Welcome</p>
         <label>
-            <input class="input" type="text" placeholder="" required="">
+            <input class="input" type="text" name="username" required="">
             <span>Username</span>
         </label>
         <label>
-            <input class="input" type="password" placeholder="" required="">
+            <input class="input" type="password" name="password" required="">
             <span>Password</span>
         </label>
         <button class="submit">Submit</button>

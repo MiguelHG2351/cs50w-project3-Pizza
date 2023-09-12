@@ -1,4 +1,9 @@
 {%extends "base.html"%}
 {%block main%}
+{% if message %}
+<div class="alert alert-dark" role="alert">
+    {{message}}
+</div>
+{% endif %}
 
 {%endblock%}
