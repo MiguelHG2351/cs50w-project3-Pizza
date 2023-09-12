@@ -24,13 +24,11 @@ def index(request):
         category_id=F('category_food__id'),
     )
     
-    # Asegúrate de usar los nombres correctos de las relaciones
     print(queryset)
     return render(request, 'index.html',{'Food_Inf':queryset, 'Category':ct_fod})
 
 
 def orders(request, food_id, category_id):
-    # Verificar si el producto existe
     try:
         detalles_comida = Size_Food.objects.get(food_id=food_id)
         food_toppings = Food_Toppings.objects.filter(category_food_id=category_id).select_related('toppings').values('toppings__name_toppings')
@@ -42,7 +40,6 @@ def orders(request, food_id, category_id):
         small_price = detalles_comida.price_food_small
         large_price = detalles_comida.price_food_large
 
-        # Convertir los ingredientes (QuerySet) en una lista de diccionarios
         toppings_list = [topping['toppings__name_toppings'] for topping in food_toppings]
 
         response_data = {
