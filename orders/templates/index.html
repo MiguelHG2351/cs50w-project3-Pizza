@@ -2,10 +2,13 @@
 {% load static %}
 {% block main %}
 {% if message %}
-<div class="alert alert-dark" role="alert">
+<div class="alert alert-dark" id='alert' role="alert">
     {{message}}
 </div>
 {% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'style.css' %}">
 <style>
     .cover-container {
@@ -19,7 +22,6 @@
         height: 100vh;
         color: white;
     }
-
 </style>
 <div class="cover-container">
     <div class="container">
@@ -51,89 +53,77 @@
 </div>
 
 <div class="Container-Menu" id='Menu'>
-    <h2>Menu</h2>
-    <!--h3>{{ ct.name_category }}</h3-->
+    <h2 style='text-align: center;'>Menu</h2>
+    <hr>
+    <div class="xd">
+        {%for ct in Category%}
+        <div class="container-ct">
+            <a href="/category/food/{{ct.id}}">
+                <input type="button" class='btcat' value="{{ct.name_category}}">
+            </a>
+        </div>
+        {%endfor%}
+    </div>
     <div class="cat">
         {% for food in Food_Inf %}
-        <div class="categorias">
-            <div class="card" style="width: 18rem;">
-                <h1>{{food.category_id}}</h1>
-                <span>{{food.size_food__name_size}}</span>
+        <div class="categorias" style='width: 20rem;height: 30rem;'>
+            <span class='btncat'>{{food.size_food__name_size}}</span>
+            <div class="card" style="width: 20rem;height: 30rem;">
+                <input type="hidden" name="category_id" value='{{food.category_id}}'>
                     <img src="{{ food.image_food }}" class="card-img-top" alt="Food Image">
                 <div class="card-body">
                     <h5 class="card-title">{{food.name_food}}</h5>
                     <p class="card-text">{{food.description}}.</p>
-                    <button onclick="info_food('{{food.id}}' , '{{food.category_id}}')" >XDD</button>
-                    <!--!Button trigger modal -->
-                        <div data-tooltip="Price:{{food.small_price}}" class="button" id='btnorder' data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            <div class="button-wrapper">
-                                <div class="text">Buy</div>
-                                <span class="icon">
-                                    <svg viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" height="16" width="16"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z">
-                                        </path>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
+    
                     <!--!Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Product Name</h1>
-                                    <!--input type="hidden" value="{{food.id}}"-->
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick='reset()'
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="product-container">
                                         <!--!Contenedor de la imagen del producto -->
                                         <div class="container-img">
-                                            <img src="{{ food.image_food }}" alt="Food-Img" srcset="">
+                                            <img src="" alt="Food-Img" id="imgfood">
                                         </div>
                                         <!--!Contenedor de la información -->
                                         <div class="container-inf">
                                             <!--!Tamaño -->
-                                            <div class="list-size">
-                                                <h4>Size</h4>
-                                                <div class="form-check">
-                                                    {%for sz in Size%}
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                    <label class="form-check-label"
-                                                        for="flexRadioDefault1">{{sz.name_size}}</label>
-                                                    {%endfor%}
-                                                </div>
+                                        <div class="list-size">
+                                            <h4>Size</h4>
+                                            <div class="form-check" onclick="totalprice('{{food.id}}')">
+                                                <input class="form-check-input" type="radio" name="sizeRadio" id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1" id='large'></label>
                                             </div>
+                                            <div class="form-check" onclick="totalprice('{{food.id}}')">
+                                                <input class="form-check-input" type="radio" name="sizeRadio" id="flexRadioDefault2">
+                                                <label class="form-check-label" for="flexRadioDefault2" id='small'></label>
+                                            </div>
+                                        </div>
+
                                             <!--!Cantidad-->
                                             <div class="cantidad">
-                                                <input type="number" id="cantidad" name="cantidad" min="1" max="30">
+                                                <h4>Cantidad</h4>
+                                                <input type="number" id="cantidad" name="cantidad" min="1" max="30" onclick="totalprice('{{food.id}}')">
                                             </div>
                                             <!--!Complementos -->
-                                            <div class="list-toppings">
+                                            <div class="list-toppings" onclick="totalprice('{{food.id}}')">
                                                 <h4>Toppings</h4>
-                                                {%for tp in Toppings%}
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="{{tp.id}}"
-                                                        id="flexCheckIndeterminate">
-                                                    <label class="form-check-label"
-                                                        for="flexCheckIndeterminate">{{tp.name_toppings}}</label>
+                                                <div class="form-check" id='toppings'>
                                                 </div>
-                                                {%endfor%}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer" style='justify-content: space-between;'>
-                                        <span><strong>Price: </strong>c$0:00</span>
+                                        <span id='price'><strong>Price: </strong>c$0:00</span>
                                         <div class="options">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="button" class="btn btn-secondary" onclick='reset()'
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-dark"> <i class="bi bi-cart"></i>
                                                 <button type=" button" class="btn btn-dark" id='cart'> <i class="bi bi-cart4"></i>
                                                     Add To Cart</button>
                                         </div>
@@ -144,11 +134,26 @@
                     </div>
                 </div>
             </div>
+            <!--!Button trigger modal -->
+            <div onclick="info_food('{{food.id}}' , '{{food.category_id}}')" data-tooltip="Price:{{food.small_price}}"
+                class="button" id='btnorder' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="button-wrapper">
+                    <div class="text">Buy</div>
+                    <span class="icon">
+                        <svg viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" height="16" width="16"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z">
+                            </path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
         </div>
         {%endfor%}
     </div>
 </div>
-<script src="{% static 'js/infordes.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {%endblock%}
 

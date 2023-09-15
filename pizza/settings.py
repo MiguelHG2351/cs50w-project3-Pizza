@@ -122,5 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/img/food/'
+# settings.py
+
+LOGIN_REDIRECT_URL = '/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'orders/food')
 

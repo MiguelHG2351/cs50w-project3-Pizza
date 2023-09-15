@@ -11,11 +11,15 @@ header a {
     text-decoration: none;
     color: white;
 }
-.cat{
+
+.cat {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+    place-items: center;
+    padding: 1rem;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -88,6 +92,7 @@ main {
 .Container-Menu {
     padding: 25px;
     overflow-y: auto;
+    background: #fec195;
 }
 
 /*!Region de Ordenes*/
@@ -137,9 +142,9 @@ main {
     color: black;
 }
 
-#img-card>img {
-    height: 100%;
-    width: 100%;
+.card>img {
+    width: 318px;
+    height: 225px;
 }
 
 /*!uiverse.io*/
@@ -225,6 +230,8 @@ button {
 
 #btnorder {
     cursor: pointer;
+    left: 12rem;
+    bottom: 3rem;
 }
 
 button:hover {
@@ -330,13 +337,14 @@ button:hover .star-6 {
     bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
     left: calc(50% - var(--tooltip-width) / 2);
 }
-.bi-cart::before{
+
+.bi-cart::before {
     content: none;
 }
 
 .button::after {
     position: absolute;
-    content:'';
+    content: '';
     width: 0;
     height: 0;
     border: 10px solid transparent;
@@ -419,144 +427,89 @@ button:hover .star-6 {
 
 /*!Login*/
 .container-form {
-    display: grid;
-    padding: 4rem;
-    height: auto;
+    display: flex;
+    padding: 2.1rem;
     justify-content: center;
+    margin-top: 3rem;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 20rem;
-    max-width: 350px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    position: relative;
-}
-
-.title {
-    font-size: 28px;
-    color: royalblue;
-    font-weight: 600;
-    letter-spacing: -1px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-}
-
-.title::before,
-.title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: royalblue;
-}
-
-.title::before {
-    width: 18px;
-    height: 18px;
-    background-color: royalblue;
-}
-
-.title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-}
-
-.message,
-.signin {
-    color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
-}
-
-.signin {
+.container-form>form {
+    background-color: black;
+    color: white;
     text-align: center;
+    padding: 1.2rem;
+    border-radius: 4%;
 }
 
-.signin a {
-    color: royalblue;
-}
-
-.signin a:hover {
-    text-decoration: underline royalblue;
-}
-
-.flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-}
-
-.form label {
-    position: relative;
-}
-
-.form label .input {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-}
-
-.form label .input+span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown+span {
-    top: 15px;
-    font-size: 0.9em;
-}
-
-.form label .input:focus+span,
-.form label .input:valid+span {
-    top: 0px;
-    font-size: 0.7em;
-    font-weight: 600;
-}
-
-.form label .input:valid+span {
-    color: rgb(9, 0, 128);
-}
-
-.submit {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border-radius: 32px;
     border: none;
-    outline: none;
-    background-color: royalblue;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transform: .3s ease;
+    background-color: #dde2e7;
+    width: 13em;
+    height: 2.5em;
+    font-size: 1rem;
+    padding: 1rem;
 }
 
-.submit:hover {
-    background-color: rgb(56, 90, 194);
-    cursor: pointer;
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline-color: lightcoral;
 }
 
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-        opacity: 1;
-    }
+.user {
+    display: flex;
+    gap: .5rem;
+    padding: .4rem;
+}
 
-    to {
-        transform: scale(1.8);
-        opacity: 0;
-    }
+input[type="submit"] {
+    padding: 0.5rem;
+    width: 10rem;
+    color: white;
+    border-color: transparent;
+    background-color: tomato;
+    border-radius: 32px;
+}
+
+input[type="submit"]:hover {
+    background-color: #FEC195;
+}
+
+.btcat,
+.btncat {
+    background: rgb(0, 0, 0);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 32px;
+    text-align: center;
+    width: 100px;
+}
+
+.xd {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0.5rem;
+}
+
+.btncat {
+    position: relative;
+    top: 12.5rem;
+    left: .5rem;
+    z-index: 99999;
+}
+
+.alert {
+    z-index: 99999;
+}
+
+.btcat:hover {
+    background: #e5aa80;
+}
+
+.categoria {
+    width: 20rem;
 }
