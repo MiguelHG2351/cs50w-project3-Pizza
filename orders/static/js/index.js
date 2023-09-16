@@ -148,7 +148,12 @@ function totalprice(prod_id) {
 function reset() {
     var size_small = document.getElementById("flexRadioDefault2");
     var size_large = document.getElementById("flexRadioDefault1");
-    var cantidad = parseInt(document.getElementById("cantidad").value) = 1;
+    var cantidad = 1 
+    var xd = parseInt(document.getElementById("cantidad").value);
+    if(!isNaN(xd))
+    {
+        cantidad =xd;
+    }
 
     list_toppings = [];
     size_small.checked = true;
